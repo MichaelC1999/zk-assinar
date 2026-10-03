@@ -1,0 +1,8 @@
+# Personal data: signed PDFs, proofs, salts, witnesses
+*.pdf
+work/
+circuits/*/job.toml
+circuits/*/target/
+backend/target/
+contracts/out/
+contracts/cache/
