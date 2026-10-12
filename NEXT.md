@@ -1,0 +1,5 @@
+- Lets restart clear everything except for the PDF / markdown files
+- Start with a simple proof that takes in the container and reconstructs the hash (ie content, signature, cpf)
+- After this another proof takes in the signature and the CPF, deconstructs the signature to recover the signer, compares to the CPF input and proves a match
+- May be too complex to start with proofs for the content of the PDF.
+- Jolt could be used instead of Noir for finding the substring, more performant for content validation
