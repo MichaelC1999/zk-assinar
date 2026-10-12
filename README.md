@@ -1,7 +1,11 @@
-# zk-assinar — minimal
+# zk-assinar
 
-ZK attestation that a gov.br-signed PDF was signed by a (private) CPF. Design: `zk_assinar_minimal_flow.png`,
-mechanisms: [MECHANISMS.md](MECHANISMS.md).
+Zero-knowledge attestation that a gov.br-signed PDF was signed by a specific CPF holder, recorded on
+chain under a salted pseudonym without revealing the CPF or the document.
+
+![Flow](zk_assinar_minimal_flow.png)
+
+Mechanisms are explained in [MECHANISMS.md](MECHANISMS.md).
 
 ```bash
 scripts/test.py        # build, prove the sample PDF, reconstruct + compare, negative cases, forge tests
@@ -17,6 +21,13 @@ scripts/test.py        # build, prove the sample PDF, reconstruct + compare, neg
 | `contracts` | `AttestationRegistry` + generated verifiers (Foundry) |
 | `scripts/build.sh` | Compile circuits, write vks and Solidity verifiers, build backend |
 
-Toolchain: nargo `1.0.0-beta.22`, bb `5.0.0-nightly.20260522`, noir_rsa `v0.12.0`. Proving both
-circuits takes ~3 s on Apple Silicon. `work/` and PDFs are gitignored — they contain personal data.
-Previous design archived at `../zk-assinar-archive-2026-10-18/`.
+## Dependencies and tooling
+
+- **Noir** `nargo 1.0.0-beta.22`: circuits
+- **Barretenberg** `bb 5.0.0-nightly.20260522`: UltraHonk proving, verification keys, Solidity verifiers
+- **Noir libraries:** `noir_rsa v0.12.0`, `noir-bignum v0.10.0-2`, `sha256 v0.3.0`
+- **Rust** (stable, Cargo): backend; crates `sha2`, `num-bigint`, `getrandom`, `serde_json`
+- **Foundry** (`forge`, `forge-std`): contracts and contract tests
+- **Python 3** (standard library only): end-to-end test script
+
+`work/` and PDFs are gitignored: they contain personal data.
